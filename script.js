@@ -2,6 +2,11 @@
 var quizName = document.getElementById('quiz');
 var resultsShown = document.getElementById('results');
 var sumbitButton = document.getElementById('sumbit');
+var myQuestions =[];
+
+buildquiz();
+showslide(currentslide);
+sumbitButton.addEventListener('click', showresults);
 
 function buildquiz() {
     cost output =[];
@@ -19,7 +24,8 @@ function buildquiz() {
                 );
                 }
 output.push(
-    `<div class="question"> ${currentQuestion.question} </div>
+    `<div class ="slide">
+    <div class="question"> ${currentQuestion.question} </div>
     <div class="answers"> ${answers.join()} </div>`
 );
         }
@@ -27,19 +33,31 @@ output.push(
 quizName.innerHTML = output.join();
     }
     myQuestions.foreach( (currentQuestion, questionNumber) {
+        var answers = answers[questionNumber];
+        var selector = `input[name=questions${questionNumber}]:checked`;
+        var userAnswer = (answers.querySelector(selector) || {}).value;
+
+if (userAnswer === currentQuestion.correctAnswer) {
+    numcorrect++;
+
+    answers[questionNumber].style.color = 'lightgreen';
+
+}
+
+else {
+    answers[questionNumber].style.color = 'red';
+}
 
     });
 
-
-
-        
+function showresults() {
+    var answers = quizName.querySelectorAll('.answers');
+    let numcorrect = 0;
     
+ resultsShown.innerHTML = `${numcorrect} out of ${myQuestions.length}`;
+}
 
 
-function showresults() { }
-
-buildquiz();
-sumbitButton.addEventListener('click', showresults);
 
 myQuestions = [{
 }
@@ -80,3 +98,6 @@ myQuestions = [{
 },
 ]
 
+(function() {
+
+}
