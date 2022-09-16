@@ -47,6 +47,7 @@ h3 {
     align-items: center;
     max-width: 80rem;
     margin: 0 auto;
+    padding: 2rem;
 }
 
 .container > *{
@@ -98,3 +99,12 @@ h3 {
     transform: none;
 
 }
+
+.correct {
+    background-color: green;
+}
+
+.incorrect {
+    background-color: red;
+}
+
