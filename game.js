@@ -42,7 +42,7 @@ let questions =[
    }
     ];
 
-const correct= 10;
+const correct= 30;
 const MAX_QUESTION= 3;
 
 startTimer = () => {
@@ -109,6 +109,10 @@ choices.forEach(choice => {
 
        const classToapply = 
        selectedAnswer === currentQuestion.answer ? "correct" : "incorrect";
+
+       if(classToapply === "correct") {
+        incrementScore(correct);
+       }
        
 selectedChoice.parentElement.classList.add(classToapply);
 setTimeout( () => {
@@ -118,11 +122,13 @@ selectedChoice.parentElement.classList.remove(classToapply);
 
 }, 1000);
 
-    
-      
-
-
     });
 });
+
+incrementScore = num => {
+    score +=num;
+    scoreText.innerText = score;
+
+};
 
 startGame();
